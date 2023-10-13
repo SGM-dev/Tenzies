@@ -5,19 +5,13 @@
 body {
   margin: 0;
   background: #0b2434;
-  height: 100vh;
-}
-
-#root {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 30px 20px;
 }
 
 main {
-  width: 80vh;
-  height: 80vh;
+  margin: 0 auto;
+  max-width: 800px;
+  height: 400px;
   border-radius: 10px;
   background: #f5f5f5;
 }
