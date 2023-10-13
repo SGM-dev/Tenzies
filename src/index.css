@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: Karla;
 }
 
 body {
@@ -11,7 +12,40 @@ body {
 main {
   margin: 0 auto;
   max-width: 800px;
+  padding: 20px;
   height: 400px;
   border-radius: 10px;
   background: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dice-container {
+  display: grid;
+  grid-template: auto auto / repeat(5, 1fr);
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+}
+
+.die-face {
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.die-num {
+  margin: 0;
+  color: #2b283a;
+  text-align: center;
+  font-family: Karla;
+  font-size: 2rem;
+  font-weight: 700;
 }
