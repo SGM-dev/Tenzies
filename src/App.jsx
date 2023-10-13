@@ -1,5 +1,4 @@
 import { useState } from "react";
-import viteLogo from "/vite.svg";
 import Die from "./components/Die";
 
 export default function App() {
