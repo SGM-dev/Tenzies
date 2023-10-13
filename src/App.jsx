@@ -3,6 +3,15 @@ import viteLogo from "/vite.svg";
 import Die from "./components/Die";
 
 export default function App() {
+  function allNewDice() {
+    const newDice = Array(10)
+      .fill(0)
+      .map(() => Math.ceil(Math.random() * 6));
+
+    return newDice;
+  }
+
+  allNewDice();
   return (
     <main>
       <div className="dice-container">
