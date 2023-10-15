@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: Karla;
+  font-family: "Karla", sans-serif;
 }
 
 body {
@@ -17,8 +17,10 @@ main {
   border-radius: 10px;
   background: #f5f5f5;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
+  gap: 1.5em;
 }
 
 .dice-container {
@@ -48,4 +50,24 @@ main {
   font-family: Karla;
   font-size: 2rem;
   font-weight: 700;
+}
+
+.roll-dice {
+  background-color: #5035ff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5em 1.5em;
+  color: #fff;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.roll-dice:focus {
+  outline: none;
+}
+
+.roll-dice:active {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
