@@ -7,7 +7,9 @@ export default function App() {
   function allNewDice() {
     const newDice = Array(10)
       .fill(0)
-      .map(() => Math.ceil(Math.random() * 6));
+      .map(() => {
+        return { value: Math.ceil(Math.random() * 6), isHeld: false };
+      });
 
     return newDice;
   }
@@ -16,15 +18,16 @@ export default function App() {
     setDice(allNewDice(0));
   }
 
-
-  const diceElements = dice.map((num, index) => (
-    <Die value={num} key={index} />
+  const diceElements = dice.map((die, index) => (
+    <Die value={die.value} key={index} isHeld={die.isHeld} />
   ));
 
   return (
     <main>
       <div className="dice-container">{diceElements}</div>
-      <button className="roll-dice" onClick={rollDice}>Roll</button>
+      <button className="roll-dice" onClick={rollDice}>
+        Roll
+      </button>
     </main>
   );
 }
