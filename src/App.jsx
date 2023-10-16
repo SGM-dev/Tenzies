@@ -31,11 +31,16 @@ export default function App() {
   }
 
   function rollDice() {
-    setDice((prevDice) =>
-      prevDice.map((die) => {
-        return die.isHeld ? die : generateNewDie();
-      })
-    );
+    if (!tenzies) {
+      setDice((prevDice) =>
+        prevDice.map((die) => {
+          return die.isHeld ? die : generateNewDie();
+        })
+      );
+    } else {
+      setTenzies(false);
+      setDice(allNewDice());
+    }
   }
 
   function holdDice(id) {
