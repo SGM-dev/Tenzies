@@ -8,28 +8,23 @@ export default function App() {
   function allNewDice() {
     const newDice = Array(10)
       .fill(0)
-      .map(() => {
-        return {
-          value: Math.ceil(Math.random() * 6),
-          isHeld: false,
-          id: nanoid(),
-        };
-      });
+      .map(() => generateNewDie());
 
     return newDice;
   }
 
+  function generateNewDie() {
+    return {
+      value: Math.ceil(Math.random() * 6),
+      isHeld: false,
+      id: nanoid(),
+    };
+  }
+
   function rollDice() {
-    // setDice(allNewDice());
     setDice((prevDice) =>
       prevDice.map((die) => {
-        return die.isHeld
-          ? die
-          : {
-              value: Math.ceil(Math.random() * 6),
-              isHeld: false,
-              id: nanoid(),
-            };
+        return die.isHeld ? die : generateNewDie();
       })
     );
   }
@@ -37,7 +32,7 @@ export default function App() {
   function holdDice(id) {
     setDice((prevDice) =>
       prevDice.map((die) => {
-        return { ...die, isHeld: die.id === id ? !die.isHeld : die.isHeld };
+        return die.id === id ? { ...die, isHeld: !die.isHeld } : die;
       })
     );
   }
