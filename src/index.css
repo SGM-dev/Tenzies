@@ -20,7 +20,6 @@ main {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  gap: 1.5em;
 }
 
 .dice-container {
@@ -46,7 +45,6 @@ main {
   margin: 0;
   color: #2b283a;
   text-align: center;
-  font-family: Karla;
   font-size: 2rem;
   font-weight: 700;
 }
@@ -75,4 +73,13 @@ main {
   color: #2b283a;
   font-size: 1.6rem;
   font-weight: 700;
+  text-align: center; 
+}
+
+.instructions {
+  color: #4a4e74;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 0.81919rem;
+  font-weight: 400;
 }
