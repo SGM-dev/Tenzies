@@ -44,6 +44,7 @@ export default function App() {
       setTenzies(false);
       setDice(allNewDice());
       setRolls(0);
+      setTime({ start: Date.now(), end: 0 });
     }
   }
 
