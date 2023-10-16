@@ -20,7 +20,18 @@ export default function App() {
   }
 
   function rollDice() {
-    setDice(allNewDice());
+    // setDice(allNewDice());
+    setDice((prevDice) =>
+      prevDice.map((die) => {
+        return die.isHeld
+          ? die
+          : {
+              value: Math.ceil(Math.random() * 6),
+              isHeld: false,
+              id: nanoid(),
+            };
+      })
+    );
   }
 
   function holdDice(id) {
