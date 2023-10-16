@@ -6,6 +6,10 @@ export default function App() {
   const [dice, setDice] = useState(allNewDice);
   const [tenzies, setTenzies] = useState(false);
 
+  useEffect(() => {
+    console.log("Dice state changed");
+  }, [dice]);
+
   function allNewDice() {
     const newDice = Array(10)
       .fill(0)
