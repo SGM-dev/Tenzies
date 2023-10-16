@@ -7,7 +7,10 @@ export default function App() {
   const [tenzies, setTenzies] = useState(false);
 
   useEffect(() => {
-    console.log("Dice state changed");
+    if (dice.every((die) => die.isHeld && die.value === dice[0].value)) {
+      setTenzies(true);
+      console.log("Win!");
+    }
   }, [dice]);
 
   function allNewDice() {
