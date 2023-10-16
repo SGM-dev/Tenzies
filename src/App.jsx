@@ -6,6 +6,7 @@ import Confetti from "react-confetti";
 export default function App() {
   const [dice, setDice] = useState(allNewDice);
   const [tenzies, setTenzies] = useState(false);
+  const [rolls, setRolls] = useState(0);
 
   useEffect(() => {
     if (dice.every((die) => die.isHeld && die.value === dice[0].value)) {
@@ -36,6 +37,7 @@ export default function App() {
           return die.isHeld ? die : generateNewDie();
         })
       );
+      setRolls((prevRolls) => ++prevRolls);
     } else {
       setTenzies(false);
       setDice(allNewDice());
@@ -63,6 +65,7 @@ export default function App() {
     <main>
       {tenzies && <Confetti />}
       <h1 className="title">Tenzies</h1>
+      <h2 className="rolls">Number of rolls: {rolls}</h2>
       <p className="instructions">
         Roll until all dice are the same. Click each die to freeze it at its
         current value between rolls.
