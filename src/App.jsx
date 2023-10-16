@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Die from "./components/Die";
 import { nanoid } from "nanoid";
 
 export default function App() {
   const [dice, setDice] = useState(allNewDice);
+  const [tenzies, setTenzies] = useState(false);
 
   function allNewDice() {
     const newDice = Array(10)
