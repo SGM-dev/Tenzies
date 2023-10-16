@@ -48,6 +48,7 @@ export default function App() {
 
   return (
     <main>
+      <h1 className="title">Tenzies</h1>
       <div className="dice-container">{diceElements}</div>
       <button className="roll-dice" onClick={rollDice}>
         Roll

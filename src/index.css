@@ -70,3 +70,9 @@ main {
 .roll-dice:active {
   box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
+
+.title {
+  color: #2b283a;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
