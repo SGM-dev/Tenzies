@@ -7,10 +7,12 @@ export default function App() {
   const [dice, setDice] = useState(allNewDice);
   const [tenzies, setTenzies] = useState(false);
   const [rolls, setRolls] = useState(0);
+  const [time, setTime] = useState({ start: Date.now(), end: 0 });
 
   useEffect(() => {
     if (dice.every((die) => die.isHeld && die.value === dice[0].value)) {
       setTenzies(true);
+      setTime((prevTime) => ({ ...prevTime, end: Date.now() }));
     }
   }, [dice]);
 
@@ -41,6 +43,7 @@ export default function App() {
     } else {
       setTenzies(false);
       setDice(allNewDice());
+
     }
   }
 
