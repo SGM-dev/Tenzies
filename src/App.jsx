@@ -24,7 +24,11 @@ export default function App() {
   }
 
   function holdDice(id) {
-    console.log(id);
+    setDice((prevDice) =>
+      prevDice.map((die) => {
+        return { ...die, isHeld: die.id === id ? !die.isHeld : die.isHeld };
+      })
+    );
   }
 
   const diceElements = dice.map((die) => (
