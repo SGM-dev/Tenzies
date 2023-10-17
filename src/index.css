@@ -85,3 +85,19 @@ main {
   font-size: 0.81919rem;
   font-weight: 400;
 }
+
+
+.score-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+}
+
+.current-score, .best-score {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 10px 
+}

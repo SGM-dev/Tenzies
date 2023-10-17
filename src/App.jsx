@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import Die from "./components/Die";
 import { nanoid } from "nanoid";
 import Confetti from "react-confetti";
+import { Score } from "./components/Score";
 
 export default function App() {
   const [dice, setDice] = useState(allNewDice);
   const [tenzies, setTenzies] = useState(false);
   const [rolls, setRolls] = useState(0);
-  const [time, setTime] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
 
   useEffect(() => {
     if (dice.every((die) => die.isHeld && die.value === dice[0].value)) {
@@ -19,7 +20,7 @@ export default function App() {
     let interval = null;
     if (!tenzies) {
       interval = setInterval(() => {
-        setTime((prevTime) => prevTime + 1);
+        setCurrentTime((time) => time + 1);
       }, 10);
     }
     return () => clearInterval(interval);
@@ -78,7 +79,7 @@ export default function App() {
     <main>
       {tenzies && <Confetti />}
       <h1 className="title">Tenzies</h1>
-      <h2 className="rolls">Number of rolls: {rolls}</h2>
+      <Score currentRolls={rolls} currentTime={currentTime} />
       <p className="instructions">
         Roll until all dice are the same. Click each die to freeze it at its
         current value between rolls.
