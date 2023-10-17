@@ -7,14 +7,24 @@ export default function App() {
   const [dice, setDice] = useState(allNewDice);
   const [tenzies, setTenzies] = useState(false);
   const [rolls, setRolls] = useState(0);
-  const [time, setTime] = useState({ start: Date.now(), end: 0 });
+  const [time, setTime] = useState(0);
 
   useEffect(() => {
     if (dice.every((die) => die.isHeld && die.value === dice[0].value)) {
       setTenzies(true);
-      setTime((prevTime) => ({ ...prevTime, end: Date.now() }));
     }
   }, [dice]);
+
+  useEffect(() => {
+    let intervalId;
+    if (!tenzies) {
+      intervalId = setInterval(() => {
+        setTime((prevTime) => prevTime + 1);
+      }, 10);
+    }
+
+    return clearInterval(intervalId);
+  }, [tenzies, time]);
 
   function allNewDice() {
     const newDice = Array(10)
@@ -39,12 +49,12 @@ export default function App() {
           return die.isHeld ? die : generateNewDie();
         })
       );
-      setRolls((prevRolls) => ++prevRolls);
+      setRolls((prevRolls) => prevRolls + 1);
     } else {
       setTenzies(false);
       setDice(allNewDice());
       setRolls(0);
-      setTime({ start: Date.now(), end: 0 });
+      setTime(0);
     }
   }
 
