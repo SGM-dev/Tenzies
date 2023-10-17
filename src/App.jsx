@@ -7,31 +7,27 @@ import { Score } from "./components/Score";
 export default function App() {
   const [dice, setDice] = useState(allNewDice);
   const [tenzies, setTenzies] = useState(false);
-  const [rolls, setRolls] = useState(0);
+  const [currentRolls, setCurrentRolls] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const [bestScore, setBestScore] = useState(
-    JSON.parse(localStorage.getItem("bestScore")) || {
-      leastRolls: 0,
-      bestTime: 0,
-    }
-  );
+  const [bestScore, setBestScore] = useState({
+    leastRolls: 0,
+    bestTime: 0,
+  });
 
   useEffect(() => {
     if (dice.every((die) => die.isHeld && die.value === dice[0].value)) {
       setTenzies(true);
-      setBestScore((prevBestScore) => {
-        return {
-          leastRolls:
-            prevBestScore["leastRolls"] &&
-            currentRolls < prevBestScore["leastRolls"]
-              ? currentRolls
-              : prevBestScore["leastRolls"],
-          bestTime:
-            prevBestScore["bestTime"] && currentTime < prevBestScore["bestTime"]
-              ? currentTime
-              : prevBestScore["bestTime"],
-        };
-      });
+      setBestScore((prevBestScore) => ({
+        leastRolls:
+          prevBestScore.leastRolls === 0 ||
+          currentRolls < prevBestScore.leastRolls
+            ? currentRolls
+            : prevBestScore.leastRolls,
+        bestTime:
+          prevBestScore.bestTime === 0 || currentTime < prevBestScore.bestTime
+            ? currentTime
+            : prevBestScore.bestTime,
+      }));
     }
   }, [dice]);
 
@@ -68,13 +64,12 @@ export default function App() {
           return die.isHeld ? die : generateNewDie();
         })
       );
-      setRolls((prevRolls) => prevRolls + 1);
-      console.log(bestScore);
+      setCurrentRolls((prevRolls) => prevRolls + 1);
     } else {
       setTenzies(false);
       setDice(allNewDice());
-      setRolls(0);
-      setTime(0);
+      setCurrentRolls(0);
+      setCurrentTime(0);
     }
   }
 
@@ -100,7 +95,7 @@ export default function App() {
       {tenzies && <Confetti />}
       <h1 className="title">Tenzies</h1>
       <Score
-        currentRolls={rolls}
+        currentRolls={currentRolls}
         currentTime={currentTime}
         bestScore={bestScore}
       />
