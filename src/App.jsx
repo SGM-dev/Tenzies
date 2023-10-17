@@ -16,15 +16,14 @@ export default function App() {
   }, [dice]);
 
   useEffect(() => {
-    let intervalId;
+    let interval = null;
     if (!tenzies) {
-      intervalId = setInterval(() => {
+      interval = setInterval(() => {
         setTime((prevTime) => prevTime + 1);
       }, 10);
     }
-
-    return clearInterval(intervalId);
-  }, [tenzies, time]);
+    return () => clearInterval(interval);
+  }, [tenzies]);
 
   function allNewDice() {
     const newDice = Array(10)
