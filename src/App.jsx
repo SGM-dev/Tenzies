@@ -9,10 +9,29 @@ export default function App() {
   const [tenzies, setTenzies] = useState(false);
   const [rolls, setRolls] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [bestScore, setBestScore] = useState(
+    JSON.parse(localStorage.getItem("bestScore")) || {
+      leastRolls: 0,
+      bestTime: 0,
+    }
+  );
 
   useEffect(() => {
     if (dice.every((die) => die.isHeld && die.value === dice[0].value)) {
       setTenzies(true);
+      setBestScore((prevBestScore) => {
+        return {
+          leastRolls:
+            prevBestScore["leastRolls"] &&
+            currentRolls < prevBestScore["leastRolls"]
+              ? currentRolls
+              : prevBestScore["leastRolls"],
+          bestTime:
+            prevBestScore["bestTime"] && currentTime < prevBestScore["bestTime"]
+              ? currentTime
+              : prevBestScore["bestTime"],
+        };
+      });
     }
   }, [dice]);
 
@@ -50,6 +69,7 @@ export default function App() {
         })
       );
       setRolls((prevRolls) => prevRolls + 1);
+      console.log(bestScore);
     } else {
       setTenzies(false);
       setDice(allNewDice());
@@ -79,7 +99,11 @@ export default function App() {
     <main>
       {tenzies && <Confetti />}
       <h1 className="title">Tenzies</h1>
-      <Score currentRolls={rolls} currentTime={currentTime} />
+      <Score
+        currentRolls={rolls}
+        currentTime={currentTime}
+        bestScore={bestScore}
+      />
       <p className="instructions">
         Roll until all dice are the same. Click each die to freeze it at its
         current value between rolls.
