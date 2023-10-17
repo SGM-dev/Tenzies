@@ -33,22 +33,7 @@ main {
 }
 
 .die-face {
-  border-radius: 4px;
-  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
-  height: 50px;
-  width: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
-}
-
-.die-num {
-  margin: 0;
-  color: #2b283a;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 700;
 }
 
 .roll-dice {
@@ -86,7 +71,6 @@ main {
   font-weight: 400;
 }
 
-
 .score-container {
   display: flex;
   justify-content: space-evenly;
@@ -95,9 +79,10 @@ main {
   flex-direction: column;
 }
 
-.current-score, .best-score {
+.current-score,
+.best-score {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 10px 
+  padding: 10px;
 }
