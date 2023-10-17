@@ -9,10 +9,12 @@ export default function App() {
   const [tenzies, setTenzies] = useState(false);
   const [currentRolls, setCurrentRolls] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const [bestScore, setBestScore] = useState({
-    leastRolls: 0,
-    bestTime: 0,
-  });
+  const [bestScore, setBestScore] = useState(
+    JSON.parse(localStorage.getItem("bestScore")) || {
+      leastRolls: 0,
+      bestTime: 0,
+    }
+  );
 
   useEffect(() => {
     if (dice.every((die) => die.isHeld && die.value === dice[0].value)) {
@@ -30,6 +32,10 @@ export default function App() {
       }));
     }
   }, [dice]);
+
+  useEffect(() => {
+    localStorage.setItem("bestScore", JSON.stringify(bestScore));
+  }, [bestScore]);
 
   useEffect(() => {
     let interval = null;
